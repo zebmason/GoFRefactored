@@ -7,6 +7,16 @@
 int main()
 {
 	{
+		auto window = new DecoratorPattern::GoF::Window;
+		auto textView = new DecoratorPattern::GoF::TextView;
+
+		window->SetContents(textView);
+
+		window->SetContents(
+			new DecoratorPattern::GoF::BorderDecorator(
+				new DecoratorPattern::GoF::ScrollDecorator(textView), 1
+			)
+		);
 	}
 
 	{
