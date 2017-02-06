@@ -2,7 +2,7 @@
 
 namespace AbstractFactoryPattern::GoF
 {
-	enum CompassPoint
+	enum Direction
 	{
 		North,
 		South,
@@ -14,11 +14,12 @@ namespace AbstractFactoryPattern::GoF
 	class Room {
 	public:
 		Room(int n) {}
-		void SetSide(CompassPoint, Wall*) {}
-		void SetSide(CompassPoint, Door*) {}
+		void SetSide(Direction, Wall*) {}
+		void SetSide(Direction, Door*) {}
 	};
 	class Maze {
 	public:
+		Maze() {}
 		void AddRoom(Room*) {}
 	};
 	class Door {
