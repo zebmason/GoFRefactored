@@ -7,6 +7,9 @@
 int main()
 {
 	{
+		auto quick = new StrategyPattern::GoF::Composition(new StrategyPattern::GoF::SimpleCompositor);
+		auto slick = new StrategyPattern::GoF::Composition(new StrategyPattern::GoF::TeXCompositor);
+		auto iconic = new StrategyPattern::GoF::Composition(new StrategyPattern::GoF::ArrayCompositor(100));
 	}
 
 	{
