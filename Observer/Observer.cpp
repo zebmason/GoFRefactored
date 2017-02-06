@@ -7,6 +7,9 @@
 int main()
 {
 	{
+		auto timer = new ObserverPattern::GoF::ClockTimer;
+		auto analogClock = new ObserverPattern::GoF::AnalogClock(timer);
+		auto digitalClock = new ObserverPattern::GoF::DigitalClock(timer);
 	}
 
 	{
