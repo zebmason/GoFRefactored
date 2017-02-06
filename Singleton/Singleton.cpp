@@ -2,6 +2,8 @@
 //
 
 #include "GoF.h"
+#include "GoF2.h"
+#include "GoF3.h"
 #include "Variant1.h"
 
 int main()

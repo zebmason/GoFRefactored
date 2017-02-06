@@ -21,6 +21,12 @@
     <ClInclude Include="Variant1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GoF2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GoF3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Singleton.cpp">
