@@ -2,6 +2,7 @@
 //
 
 #include "GoF.h"
+#include "GoF2.h"
 #include "Variant1.h"
 
 int main()
