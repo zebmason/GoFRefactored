@@ -62,7 +62,7 @@ namespace CommandPattern::GoF
 	
 	void PasteCommand::Execute() { _document->Paste(); }
 
-	template <class Receiver>
+	class Receiver;
 	class SimpleCommand : public Command {
 	public:
 		typedef void (Receiver::* Action)();
@@ -74,8 +74,7 @@ namespace CommandPattern::GoF
 		Receiver* _receiver;
 	};
 
-	template <class Receiver>
-	void SimpleCommand<Receiver>::Execute() { (_receiver->*_action)(); }
+	void SimpleCommand::Execute() { (_receiver->*_action)(); }
 
 	class MacroCommand : public Command {
 	public:

@@ -1,17 +1,20 @@
 #pragma once
 
+#define DEFAULT_LIST_CAPACITY 10
+
 namespace IteratorPattern::GoF
 {
-	template <class Item>
+	class Item {};
+
 	class List {
 	public:
 		List(long size = DEFAULT_LIST_CAPACITY) {}
-		long Count() const {}
-		Item& Get(long index) const {}
+		long Count() const { return 0; }
+		Item& Get(long index) const { return *new Item(); }
 		// ... 
 	};
 
-	template <class Item>
+
 	class Iterator {
 	public:
 		virtual void First() = 0;
@@ -22,64 +25,57 @@ namespace IteratorPattern::GoF
 		Iterator() {}
 	};
 
-	template <class Item>
-	class ListIterator : public Iterator<Item> {
+	class ListIterator : public Iterator {
 	public:
-		ListIterator(const List<Item>* aList);
+		ListIterator(const List* aList);
 		virtual void First();
 		virtual void Next();
 		virtual bool IsDone() const;
 		virtual Item CurrentItem() const;
 	private:
-		const List<Item>* _list;
+		const List* _list;
 		long _current;
 	};
 
-	template <class Item>
-	ListIterator<Item>::ListIterator(const List<Item>* aList)
+	ListIterator::ListIterator(const List* aList)
 		: _list(aList), _current(0) {    }
 
-	template <class Item>
-	void ListIterator<Item>::First()
+	void ListIterator::First()
 	{
 		_current = 0;
 	}
 
-	template <class Item>
-	void ListIterator<Item>::Next()
+	void ListIterator::Next()
 	{
 		_current++;
 	}
 
-	template <class Item>
-	bool ListIterator<Item>::IsDone() const
+	bool ListIterator::IsDone() const
 	{
 		return _current >= _list->Count();
 	}
 
-	template <class Item>
-	Item ListIterator<Item>::CurrentItem() const {
+	Item ListIterator::CurrentItem() const {
 		if (IsDone()) {
 //			throw IteratorOutOfBounds;
 		}
 		return _list->Get(_current);
 	}
 
-	class Employee {
+	class Employee : public Item {
 	public:
 		void Print() {}
 	};
 
-	void PrintEmployees(Iterator<Employee*>& i) {
+	void PrintEmployees(Iterator& i) {
 		for (i.First(); !i.IsDone(); i.Next()) {
-			i.CurrentItem()->Print();
+			((Employee *)(&i.CurrentItem()))->Print();
 		}
 	}
 
-	template <class Item>
 	class AbstractList {
 	public:
-		virtual Iterator<Item>* CreateIterator() const = 0;
+		virtual Iterator* CreateIterator() const = 0;
 		// ...  
 	};
 
@@ -90,39 +86,35 @@ namespace IteratorPattern::GoF
 	}
 #endif
 
-	template <class Item>
 	class IteratorPtr {
 	public:
-		IteratorPtr(Iterator<Item>* i) : _i(i) { }
+		IteratorPtr(Iterator* i) : _i(i) { }
 		~IteratorPtr() { delete _i; }
-		Iterator<Item>* operator->() { return _i; }
-		Iterator<Item>& operator*() { return *_i; }
+		Iterator* operator->() { return _i; }
+		Iterator& operator*() { return *_i; }
 	private:
 		// disallow copy and assignment to avoid 
 		// multiple deletions of _i: 
 		IteratorPtr(const IteratorPtr&);
 		IteratorPtr& operator=(const IteratorPtr&);
 	private:
-		Iterator<Item>* _i;
+		Iterator* _i;
 	};
 
-	template <class Item>
 	class ListTraverser {
 	public:
-		ListTraverser(List<Item>* aList);
+		ListTraverser(List* aList);
 		bool Traverse();
 	protected:
 		virtual bool ProcessItem(const Item&) = 0;
 	private:
-		ListIterator<Item> _iterator;
+		ListIterator _iterator;
 	};
 
-	template <class Item>
-	ListTraverser<Item>::ListTraverser(List<Item>* aList)
+	ListTraverser::ListTraverser(List* aList)
 		: _iterator(aList) { }
 
-	template <class Item>
-	bool ListTraverser<Item>::Traverse() {
+	bool ListTraverser::Traverse() {
 		bool result = false;
 		for (_iterator.First(); !_iterator.IsDone(); _iterator.Next()) {
 			result = ProcessItem(_iterator.CurrentItem());
@@ -133,10 +125,10 @@ namespace IteratorPattern::GoF
 		return result;
 	}
 
-	class PrintNEmployees : public ListTraverser<Employee*> {
+	class PrintNEmployees : public ListTraverser {
 	public:
-		PrintNEmployees(List<Employee*>* aList, int n) :
-			ListTraverser<Employee*>(aList),
+		PrintNEmployees(List* aList, int n) :
+			ListTraverser(aList),
 			_total(n), _count(0) { }
 	protected:
 		bool ProcessItem(Employee* const&);
@@ -153,12 +145,12 @@ namespace IteratorPattern::GoF
 	template <class Item>
 	class FilteringListTraverser {
 	public:
-		FilteringListTraverser(List<Item>* aList) {}
+		FilteringListTraverser(List* aList) {}
 		bool Traverse() { return true; }
 	protected:
 		virtual bool ProcessItem(const Item&) = 0;
 		virtual bool TestItem(const Item&) = 0;
 	private:
-		ListIterator<Item> _iterator;
+		ListIterator _iterator;
 	};
 }
