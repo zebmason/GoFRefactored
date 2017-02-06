@@ -7,6 +7,9 @@
 int main()
 {
 	{
+		AbstractFactoryPattern::GoF::MazeGame game;
+		AbstractFactoryPattern::GoF::BombedMazeFactory factory;
+		game.CreateMaze(factory);
 	}
 
 	{
