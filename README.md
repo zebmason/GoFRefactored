@@ -5,7 +5,26 @@ The example C++ code from the GoF (Gang of Four) book Design Patterns has had it
 Certain examples have been refactored to remove circular dependencies.
 
 ## Introduction
-The C++ source code from the Visual Studio solution was parsed with libclang and a report produced via Doxygen.
+[DeepEnds](https://github.com/zebmason/deepends)
+ is distributed as both a [Visual Studio extension](https://visualstudiogallery.msdn.microsoft.com/4c9c5d41-46d2-409d-8c83-9d6d4d9e86bc?redir=0)
+ and as a 
+[NuGet package](https://www.nuget.org/packages/DeepEnds.Console/).
+It creates a set of nested graphs from source code and calculates various statistics on the individual graphs.
+These graphs and statistics are then saved in various formats, in this case
+the C++ source code from the Visual Studio solution was parsed with libclang and a report produced via Doxygen.
+
+DeepEnds takes an agnostic view as to how the dependencies originate. The libclang based parser does not differentiate 
+between constructing classes by inheritance as opposed to composition, it also picks up usage within the contents of methods.
+So it is also agnostic to whether the code is object orientated, in fact the original C++ parser just parses the source 
+files for include statements and nests the resulting nodes according to the corresponding Visual Studio filter. The include 
+statement based parser is thus similar to the physical cycle based analysis of Bloomberg's waf verify tool. In fact if
+the levelization technique of John Lakos has been applied to the code then the libclang based parser will execute more swiftly.
+
+The source of the C++ example code has been extracted from the Gang of Four book and inserted into a Visual Studio project
+for each Design Pattern. The code has been altered to ensure that it compiles and then all template definitions have been
+transformed into normal classes to overcome a limitation of the parser. The output report has had various of its images
+of the graphs taken for this article and, where it warns of a cycle in the graph, the corresponding example has been analysed
+and potentially refactored.
 
 ## Creational Patterns
 
