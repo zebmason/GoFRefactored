@@ -89,7 +89,13 @@ The GoF examples ([first source code](https://github.com/zebmason/GoFRefactored/
 
 ![GoF](https://github.com/zebmason/GoFRefactored/raw/master/Composite/Images/GoF.png)
 
-![GoF](https://github.com/zebmason/GoFRefactored/raw/master/Composite/Images/GoF2.png)
+![GoF2](https://github.com/zebmason/GoFRefactored/raw/master/Composite/Images/GoF2.png)
+
+the cycle in the first graph may be removed, in variant1
+([source code](https://github.com/zebmason/GoFRefactored/blob/master/Composite/Variant1.h)),
+by changing the GetComposite() command, which returns a Composite, to IsComposite() which returns a bool.
+
+![Variant1](https://github.com/zebmason/GoFRefactored/raw/master/Composite/Images/Variant1.png)
 
 ### Decorator
 The GoF example ([source code](https://github.com/zebmason/GoFRefactored/blob/master/Decorator/GoF.h))
