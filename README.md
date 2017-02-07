@@ -24,7 +24,11 @@ The source of the C++ example code has been extracted from the Gang of Four book
 for each Design Pattern. The code has been altered to ensure that it compiles and then all template definitions have been
 transformed into normal classes to overcome a limitation of the parser. The output report has had various of its images
 of the graphs taken for this article and, where it warns of a cycle in the graph, the corresponding example has been analysed
-and potentially refactored.
+and potentially refactored. Cycles are observed in the graphs for
+
+* Creational Patterns : Singleton
+* Structural Patterns : Adapter, Composite, Facade
+* Behavioural Patterns : Interpreter, Mediator, Observer, State, Visitor
 
 ## Creational Patterns
 
@@ -62,6 +66,10 @@ The GoF examples ([first source code](https://github.com/zebmason/GoFRefactored/
 
 ![GoF3](https://github.com/zebmason/GoFRefactored/raw/master/Singleton/Images/GoF3.png)
 
+the cycle in the last graph may be removed by inserting an interface as shown in variant1 
+([source code](https://github.com/zebmason/GoFRefactored/blob/master/Singleton/Variant1.h))
+
+![Variant1](https://github.com/zebmason/GoFRefactored/raw/master/Singleton/Images/Variant1.png)
 
 ## Structural Patterns
 
