@@ -2,7 +2,8 @@
 
 ## Abstract
 The example C++ code from the GoF (Gang of Four) book Design Patterns has had its dependencies analysed with [DeepEnds](https://github.com/zebmason/DeepEnds). 
-Certain examples have been refactored to remove circular dependencies.
+Certain examples have been refactored to remove circular dependencies enabled by pre-declaration of classes. These cycles in the graph serve to reduce
+the ability to subsequently modify the code with ease.
 
 ## Introduction
 [DeepEnds](https://github.com/zebmason/deepends)
