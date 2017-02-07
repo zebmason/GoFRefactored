@@ -9,39 +9,51 @@ namespace PrototypePattern::GoF
 		East,
 		West
 	};
-	class Door;
-	class Wall {
+
+	class MapSite {
 	public:
+		virtual void Enter() = 0;
+	};
+
+	class Door;
+
+	class Wall : public MapSite {
+	public:
+		Wall() {}
+		virtual void Enter() {}
 		Wall* Clone() { return this; }
 	};
-	class Room {
+
+	class Room : public MapSite {
 	public:
 		Room() {}
-		Room(int n) {}
-		void SetSide(Direction, Wall*) {}
-		void SetSide(Direction, Door*) {}
+		Room(int roomNo) {}
+		MapSite* GetSide(Direction) const { return nullptr; }
+		void SetSide(Direction, MapSite*) {}
+		virtual void Enter() {}
+	private:
+		MapSite* _sides[4];
+		int _roomNumber;
 	};
+
+	class Door : public MapSite {
+	public:
+		Door(Room* = 0, Room* = 0) {}
+		Door(const Door&);
+		virtual void Enter() {}
+		Room* OtherSideFrom(Room*) {}
+		virtual void Initialize(Room*, Room*);
+		virtual Door* Clone() const;
+	private:
+		Room* _room1;
+		Room* _room2;
+		bool _isOpen;
+	};
+
 	class Maze {
 	public:
 		Maze() {}
 		void AddRoom(Room*) {}
-	};
-
-	class MapSite {};
-
-	class Door : public MapSite {
-	public:
-		Door() {}
-		Door(const Door&);
-
-		virtual void Initialize(Room*, Room*);
-		virtual Door* Clone() const;
-
-		virtual void Enter() {}
-		Room* OtherSideFrom(Room*) { return nullptr; }
-	private:
-		Room* _room1;
-		Room* _room2;
 	};
 
 	Door::Door(const Door& other) {

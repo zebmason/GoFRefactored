@@ -9,22 +9,46 @@ namespace AbstractFactoryPattern::GoF
 		East,
 		West
 	};
-	class Door;
-	class Wall {};
-	class Room {
+
+	class MapSite {
 	public:
-		Room(int n) {}
-		void SetSide(Direction, Wall*) {}
-		void SetSide(Direction, Door*) {}
+		virtual void Enter() = 0;
 	};
+
+	class Door;
+
+	class Wall : public MapSite {
+	public:
+		Wall() {}
+		virtual void Enter() {}
+	};
+
+	class Room : public MapSite {
+	public:
+		Room(int roomNo) {}
+		MapSite* GetSide(Direction) const { return nullptr; }
+		void SetSide(Direction, MapSite*) {}
+		virtual void Enter() {}
+	private:
+		MapSite* _sides[4];
+		int _roomNumber;
+	}; 
+
+	class Door : public MapSite {
+	public:
+		Door(Room* = 0, Room* = 0) {}
+		virtual void Enter() {}
+		Room* OtherSideFrom(Room*) {}
+	private:
+		Room* _room1;
+		Room* _room2;
+		bool _isOpen;
+	};
+
 	class Maze {
 	public:
 		Maze() {}
 		void AddRoom(Room*) {}
-	};
-	class Door {
-	public:
-		Door(Room* r1, Room* r2) {}
 	};
 
 	class MazeFactory {

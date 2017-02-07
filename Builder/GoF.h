@@ -54,18 +54,39 @@ namespace BuilderPattern::GoF
 		West
 	};
 
-	class Door {
+	class MapSite {
 	public:
-		Door(Room* r1, Room* r2) {}
+		virtual void Enter() = 0;
 	};
 
-	class Wall {};
+	class Door;
 
-	class Room {
+	class Wall : public MapSite {
 	public:
-		Room(int) {}
-		void SetSide(Direction, Door*) {}
-		void SetSide(Direction, Wall*) {}
+		Wall() {}
+		virtual void Enter() {}
+	};
+
+	class Room : public MapSite {
+	public:
+		Room(int roomNo) {}
+		MapSite* GetSide(Direction) const { return nullptr; }
+		void SetSide(Direction, MapSite*) {}
+		virtual void Enter() {}
+	private:
+		MapSite* _sides[4];
+		int _roomNumber;
+	};
+
+	class Door : public MapSite {
+	public:
+		Door(Room* = 0, Room* = 0) {}
+		virtual void Enter() {}
+		Room* OtherSideFrom(Room*) {}
+	private:
+		Room* _room1;
+		Room* _room2;
+		bool _isOpen;
 	};
 
 	class StandardMazeBuilder : public MazeBuilder {
