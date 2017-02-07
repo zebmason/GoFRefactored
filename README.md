@@ -15,7 +15,7 @@ the C++ source code from the Visual Studio solution was parsed with libclang and
 
 DeepEnds takes an agnostic view as to how the dependencies originate. The libclang based parser does not differentiate 
 between constructing classes by inheritance as opposed to composition, it also picks up usage within the contents of methods.
-So it is also agnostic to whether the code is object orientated, in fact the original C++ parser just parses the source 
+So it is also agnostic as to whether the code is object orientated, in fact the original C++ parser just parses the source 
 files for include statements and nests the resulting nodes according to the corresponding Visual Studio filter. The include 
 statement based parser is thus similar to the physical cycle based analysis of Bloomberg's waf verify tool. In fact if
 the levelization technique of John Lakos has been applied to the code then the libclang based parser will execute more swiftly.
@@ -30,6 +30,9 @@ and potentially refactored.
 
 ### AbstractFactory
 The GoF example ([source code](https://github.com/zebmason/GoFRefactored/blob/master/AbstractFactory/GoF.h))
+contains no cycles but is rather busy. To digress, a typical refactoring would create a Bombed namespace and place BombedMazeFactory,
+BombedWall and RoomWithABomb into it. The resulting graph would then have those 3 classes replaced by one node representing
+the namespace.
 
 ![GoF](https://github.com/zebmason/GoFRefactored/raw/master/AbstractFactory/Images/GoF.png)
 
@@ -73,9 +76,12 @@ The GoF example ([source code](https://github.com/zebmason/GoFRefactored/blob/ma
 ![GoF](https://github.com/zebmason/GoFRefactored/raw/master/Bridge/Images/GoF.png)
 
 ### Composite
-The GoF example ([source code](https://github.com/zebmason/GoFRefactored/blob/master/Composite/GoF.h))
+The GoF examples ([first source code](https://github.com/zebmason/GoFRefactored/blob/master/Composite/GoF.h),
+[second](https://github.com/zebmason/GoFRefactored/blob/master/Composite/GoF2.h))
 
 ![GoF](https://github.com/zebmason/GoFRefactored/raw/master/Composite/Images/GoF.png)
+
+![GoF](https://github.com/zebmason/GoFRefactored/raw/master/Composite/Images/GoF2.png)
 
 ### Decorator
 The GoF example ([source code](https://github.com/zebmason/GoFRefactored/blob/master/Decorator/GoF.h))

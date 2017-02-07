@@ -2,6 +2,7 @@
 //
 
 #include "GoF.h"
+#include "GoF2.h"
 #include "Variant1.h"
 
 int main()
@@ -45,6 +46,7 @@ int main()
 			test->Add(new CompositePattern::Variant1::Leaf); // will not add leaf 
 		}
 	}
+
     return 0;
 }
 
