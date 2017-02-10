@@ -167,8 +167,15 @@ The GoF example ([source code](https://github.com/zebmason/GoFRefactored/blob/ma
 
 ### State
 The GoF example ([source code](https://github.com/zebmason/GoFRefactored/blob/master/State/GoF.h))
+contains serveral cycles
 
 ![GoF](https://github.com/zebmason/GoFRefactored/raw/master/State/Images/GoF.png)
+
+which are removed, in variant1 ([source code](https://github.com/zebmason/GoFRefactored/blob/master/State/Variant1.h)), by defining
+* an enumerant for the state
+* a state holder which contains the objects representing the states and knows the current state
+
+![Variant1](https://github.com/zebmason/GoFRefactored/raw/master/State/Images/variant1.png)
 
 ### Strategy
 The GoF example ([source code](https://github.com/zebmason/GoFRefactored/blob/master/Strategy/GoF.h))
