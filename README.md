@@ -27,9 +27,9 @@ transformed into normal classes to overcome a limitation of the parser. The outp
 of the graphs taken for this article and, where it warns of a cycle in the graph, the corresponding example has been analysed
 and potentially refactored. Cycles are observed in the graphs for
 
-* Creational Patterns : Singleton
-* Structural Patterns : Adapter, Composite, Facade
-* Behavioural Patterns : Interpreter, Mediator, Observer, State, Visitor
+* Creational Patterns : [Singleton](./README.md#singleton)
+* Structural Patterns : [Adapter](./README.md#adapter), [Composite](./README.md#composite), [Facade](./README.md#facade)
+* Behavioural Patterns : [Interpreter](./README.md#interpreter), [Mediator](./README.md#mediator), [Observer](./README.md#observer), [State](./README.md#state), [Visitor](./README.md#visitor)
 
 ## Creational Patterns
 
