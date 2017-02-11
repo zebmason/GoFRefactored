@@ -6,7 +6,7 @@ namespace InterpreterPattern::Variant1
 {
 	class IContext {
 	public:
-		bool Lookup(const char*) const { return true; }
+		virtual bool Lookup(const char*) const = 0;
 	};
 
 	class BooleanExp {
@@ -110,6 +110,7 @@ namespace InterpreterPattern::Variant1
 
 	class Context : public IContext {
 	public:
+		bool Lookup(const char*) const { return true; }
 		void Assign(VariableExp*, bool) {}
 	};
 }
