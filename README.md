@@ -162,12 +162,18 @@ The GoF examples ([first source code](https://github.com/zebmason/GoFRefactored/
 
 ### Observer
 The GoF example ([source code](https://github.com/zebmason/GoFRefactored/blob/master/Observer/GoF.h))
+contains one cycle
 
 ![GoF](https://github.com/zebmason/GoFRefactored/raw/master/Observer/Images/GoF.png)
 
+which is removed, in variant1 ([source code](https://github.com/zebmason/GoFRefactored/blob/master/Observer/Variant1.h)), by
+splitting the Subject class into two so that the data, which is subject to change, is accessible from the Observer.
+
+![Variant1](https://github.com/zebmason/GoFRefactored/raw/master/Observer/Images/Variant1.png)
+
 ### State
 The GoF example ([source code](https://github.com/zebmason/GoFRefactored/blob/master/State/GoF.h))
-contains serveral cycles
+contains several cycles
 
 ![GoF](https://github.com/zebmason/GoFRefactored/raw/master/State/Images/GoF.png)
 

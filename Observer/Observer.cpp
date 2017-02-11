@@ -13,6 +13,7 @@ int main()
 	}
 
 	{
+		auto timer = new ObserverPattern::Variant1::ClockTimer;
 	}
     return 0;
 }
