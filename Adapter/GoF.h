@@ -13,12 +13,6 @@ namespace AdapterPattern::GoF
 	};
 	class Manipulator {};
 
-	class TextShape;
-	class TextManipulator : public Manipulator {
-	public:
-		TextManipulator(const TextShape*) {}
-	};
-
 	class Shape {
 	public:
 		Shape() {}
@@ -26,6 +20,11 @@ namespace AdapterPattern::GoF
 			Point& bottomLeft, Point& topRight
 		) const {}
 		virtual Manipulator* CreateManipulator() const { return nullptr; }
+	};
+
+	class TextManipulator : public Manipulator {
+	public:
+		TextManipulator(const Shape*) {}
 	};
 
 	class TextView {
