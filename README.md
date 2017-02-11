@@ -108,6 +108,12 @@ The GoF example ([source code](https://github.com/zebmason/GoFRefactored/blob/ma
 
 ![GoF](https://github.com/zebmason/GoFRefactored/raw/master/Facade/Images/GoF.png)
 
+the cycle in the graph may be removed, in variant1
+([source code](https://github.com/zebmason/GoFRefactored/blob/master/Facade/Variant1.h)),
+because it only exists due to the use of the Visitor pattern.
+
+![Variant1](https://github.com/zebmason/GoFRefactored/raw/master/Facade/Images/Variant1.png)
+
 ### Flyweight
 The GoF example ([source code](https://github.com/zebmason/GoFRefactored/blob/master/Flyweight/GoF.h))
 
