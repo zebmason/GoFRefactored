@@ -2,7 +2,7 @@
 
 ## Abstract
 The example C++ code from the GoF (Gang of Four) book Design Patterns has had its dependencies analysed with [DeepEnds](https://github.com/zebmason/DeepEnds). 
-Certain examples have been refactored to remove circular dependencies enabled by pre-declaration of classes. These cycles in the graph serve to reduce
+Certain examples have been refactored to remove circular dependencies enabled by forward declaration of classes. These cycles in the graph serve to reduce
 the ability to subsequently modify the code with ease.
 
 ## Introduction
@@ -149,8 +149,14 @@ The GoF example ([source code](https://github.com/zebmason/GoFRefactored/blob/ma
 
 ### Mediator
 The GoF example ([source code](https://github.com/zebmason/GoFRefactored/blob/master/Mediator/GoF.h))
+contains one cycle
 
 ![GoF](https://github.com/zebmason/GoFRefactored/raw/master/Mediator/Images/GoF.png)
+
+which is removed, in variant1 ([source code](https://github.com/zebmason/GoFRefactored/blob/master/Mediator/Variant1.h)), by
+defining an interface for the Widget class.
+
+![Variant1](https://github.com/zebmason/GoFRefactored/raw/master/Mediator/Images/Variant1.png)
 
 ### Memento
 The GoF examples ([first source code](https://github.com/zebmason/GoFRefactored/blob/master/Memento/GoF.h),
