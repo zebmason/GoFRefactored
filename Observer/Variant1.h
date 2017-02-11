@@ -4,7 +4,10 @@
 
 namespace ObserverPattern::Variant1
 {
-	class SubjectData {};
+	class SubjectData {
+	public:
+		virtual ~SubjectData() {}
+	};
 
 	class Observer {
 	public:
@@ -20,8 +23,10 @@ namespace ObserverPattern::Variant1
 		virtual void Attach(Observer*);
 		virtual void Detach(Observer*);
 		virtual void Notify();
+
+		SubjectData* Data() { return _data; }
 	protected:
-		Subject() {}
+		Subject(SubjectData* data) : _data(data) {}
 	private:
 		SubjectData* _data;
 		std::vector<Observer*> _observers;
@@ -38,12 +43,17 @@ namespace ObserverPattern::Variant1
 		}
 	}
 
-	class ClockTimer : public Subject {
+	class ClockTimerData : public SubjectData {
 	public:
-		ClockTimer() {}
+		ClockTimerData() {}
 		virtual int GetHour() { return 0; }
 		virtual int GetMinute() { return 0; }
 		virtual int GetSecond() { return 0; }
+	};
+
+	class ClockTimer : public Subject {
+	public:
+		ClockTimer() : Subject(new ClockTimerData()) {}
 		void Tick();
 	};
 
@@ -85,8 +95,8 @@ namespace ObserverPattern::Variant1
 
 	void DigitalClock::Draw() {
 		// get the new values from the subject  
-		int hour = _subject->GetHour();
-		int minute = _subject->GetMinute();
+		int hour = dynamic_cast<ClockTimerData*>(_subject->Data())->GetHour();
+		int minute = dynamic_cast<ClockTimerData*>(_subject->Data())->GetMinute();
 		// etc.  
 		// draw the digital clock 
 	}
