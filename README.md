@@ -145,8 +145,14 @@ The GoF example ([source code](https://github.com/zebmason/GoFRefactored/blob/ma
 
 ### Interpreter
 The GoF example ([source code](https://github.com/zebmason/GoFRefactored/blob/master/Interpreter/GoF.h))
+contains one cycle
 
 ![GoF](https://github.com/zebmason/GoFRefactored/raw/master/Interpreter/Images/GoF.png)
+
+which is removed, in variant1 ([source code](https://github.com/zebmason/GoFRefactored/blob/master/Interpreter/Variant1.h)), by
+defining an interface for the Context class.
+
+![Variant1](https://github.com/zebmason/GoFRefactored/raw/master/Interpreter/Images/Variant1.png)
 
 ### Iterator
 The GoF example ([source code](https://github.com/zebmason/GoFRefactored/blob/master/Iterator/GoF.h))

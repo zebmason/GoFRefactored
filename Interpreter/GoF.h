@@ -69,7 +69,8 @@ namespace InterpreterPattern::GoF
 
 	AndExp::AndExp(BooleanExp* op1, BooleanExp* op2)
 	{
-		_operand1 = op1;        _operand2 = op2;
+		_operand1 = op1;
+		_operand2 = op2;
 	}
 
 	bool AndExp::Evaluate(Context& aContext) {
